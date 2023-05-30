@@ -12,7 +12,7 @@ import lt.vgrabauskas.homework08.databinding.ActivityMainBinding
 import lt.vgrabauskas.homework08.repository.Note
 import lt.vgrabauskas.homework08.secondactivity.NoteDetails
 
-class MainActivity : ActivityLifecycles() {
+class Notes : ActivityLifecycles() {
 
     private lateinit var adapter: CustomAdapter
     private lateinit var binding: ActivityMainBinding
@@ -31,9 +31,12 @@ class MainActivity : ActivityLifecycles() {
                 adapter.add(lisOfNotes)
             }
         )
-
-
         setClickOpenNoteDetails()
+
+        binding.searchButton.setOnClickListener {
+            val query = binding.searchEditText.text.toString()
+            viewModel.searchNotes(query)
+        }
     }
 
     override fun onResume() {
@@ -53,10 +56,8 @@ class MainActivity : ActivityLifecycles() {
     private fun setClickOpenNoteDetails() {
         binding.noteListView.setOnItemClickListener { adapterView, view, position, l ->
             val note: Note = adapterView.getItemAtPosition(position) as Note
-
             val intent = Intent(this, NoteDetails::class.java)
             intent.putExtra(MAIN_ACTIVITY_NOTE_INTENT_ID, note.id)
-
             startActivity(intent)
         }
     }

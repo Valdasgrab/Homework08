@@ -1,25 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".mainactivity.MainActivity">
+    tools:context=".mainactivity.Notes">
 
     <data>
 
         <variable
             name="mainActivity"
-            type="lt.vgrabauskas.homework08.mainactivity.MainActivity" />
+            type="lt.vgrabauskas.homework08.mainactivity.Notes" />
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/searchEditText"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Search"
+                android:inputType="text" />
+
+            <Button
+                android:id="@+id/searchButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="Search" />
+        </RelativeLayout>
+
+
         <ListView
             android:id="@+id/noteListView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="32dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="50dp"
             android:layout_marginRight="32dp"
             android:layout_marginBottom="96dp" />
 

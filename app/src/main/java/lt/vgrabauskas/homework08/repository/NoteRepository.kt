@@ -31,18 +31,21 @@ class NoteRepository {
         notes.addAll(generateListOfItems())
     }
 
+    fun getSearchResults(query: String): List<Note> {
+        return notes.filter { it.name.contains(query, ignoreCase = true) }
+    }
+
     private fun generateListOfItems(): List<Note> {
         val list = mutableListOf<Note>()
 
         for (number in 1..9) {
             val item = Note(
                 number,
-                "dummy text01: $number",
-                "dummy text02: ${(1..100).random()}"
+                "note name: $number",
+                "details: ${(1..100).random()}"
             )
             list.add(item)
         }
-
         return list
     }
 

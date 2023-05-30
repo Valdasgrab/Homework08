@@ -19,4 +19,7 @@ class NoteViewModel : ViewModel() {
         _itemsLiveData.value = NoteRepository.instance.notes
     }
 
+    fun searchNotes(query: String) {
+        _itemsLiveData.value = NoteRepository.instance.getSearchResults(query)
+    }
 }

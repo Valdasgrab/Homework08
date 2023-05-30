@@ -17,8 +17,18 @@ class SecondActivityViewModel : ViewModel() {
             if (noteId > 0) {
                 _noteLiveData.value = NoteRepository.instance.getNote(noteId)
             } else {
-                _noteLiveData.value = Note(1, "", "")
+                _noteLiveData.value = Note(-1, "", "")
             }
         }
     }
-}
+
+    fun saveNote( note: Note) {
+        if (note != null) {
+            if (note.id > 0) {
+                NoteRepository.instance.updateNote(note)
+            } else {
+                NoteRepository.instance.addNote(note)
+            }
+        }
+
+    }}

@@ -10,12 +10,12 @@ import lt.vgrabauskas.homework08.ActivityLifecycles
 import lt.vgrabauskas.homework08.R
 import lt.vgrabauskas.homework08.databinding.ActivityNoteBinding
 import lt.vgrabauskas.homework08.mainactivity.MainActivity
+import lt.vgrabauskas.homework08.repository.Note
 
 class NoteDetails : ActivityLifecycles() {
 
     private lateinit var binding: ActivityNoteBinding
-    private var finishIntentStatus = SECOND_ACTIVITY_NOTE_INTENT_RETURN_UPDATE
-    private val activityViewModel: SecondActivityViewModel by viewModels()
+    private val noteActivityViewModel: SecondActivityViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,45 +23,24 @@ class NoteDetails : ActivityLifecycles() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_note)
         binding.notedetails = this
-        activityViewModel.noteLiveData.observe(
+        noteActivityViewModel.noteLiveData.observe(
             this,
             Observer { note ->
                 binding.note = note
             }
         )
-        activityViewModel.fetchNote(getIntentExtra())
+        noteActivityViewModel.fetchNote(getIntentExtra())
     }
 
     private fun getIntentExtra() =
         intent.getIntExtra(MainActivity.MAIN_ACTIVITY_NOTE_INTENT_ID, -1)
 
     fun onClickSaveButton() {
-        val finishIntent = Intent()
-        finishIntent.putExtra(SECOND_ACTIVITY_NOTE_INTENT_RETURN_OBJECT, binding.note)
-
-        if (binding.idEditText.text.toString().toInt() < 0) {
-            finishIntentStatus = RESULT_CANCELED
-        }
-        setResult(finishIntentStatus, finishIntent)
+        noteActivityViewModel.saveNote(binding.note as Note)
         finish()
     }
     fun onClickCloseButton(view: View) {
         finish()
-    }
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState.run {
-            putParcelable(SECOND_ACTIVITY_NOTE_SAVE_INSTANCE_STATE, binding.note)
-            putInt(SECOND_ACTIVITY_NOTE_FINISH_INTENT_STATUS, finishIntentStatus)
-        }
-        super.onSaveInstanceState(outState)
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-        with(savedInstanceState) {
-            binding.note = getParcelable(SECOND_ACTIVITY_NOTE_SAVE_INSTANCE_STATE)
-            finishIntentStatus = this.getInt(SECOND_ACTIVITY_NOTE_FINISH_INTENT_STATUS)
-        }
     }
 
     companion object {

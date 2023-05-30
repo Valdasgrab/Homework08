@@ -31,18 +31,23 @@ class MainActivity : ActivityLifecycles() {
                 adapter.add(lisOfNotes)
             }
         )
-        viewModel.fetchNotes()
+
 
         setClickOpenNoteDetails()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.fetchNotes()
+    }
+
+    fun onClickButtonOpenSecondActivity(view: View) {
+        startActivity(Intent(this, NoteDetails::class.java))
     }
 
     private fun setUpNoteListView() {
         adapter = CustomAdapter(this)
         binding.noteListView.adapter = adapter
-    }
-
-    fun onClickButtonOpenSecondActivity(view: View) {
-        startActivity(Intent(this, NoteDetails::class.java))
     }
 
     private fun setClickOpenNoteDetails() {
@@ -51,6 +56,8 @@ class MainActivity : ActivityLifecycles() {
 
             val intent = Intent(this, NoteDetails::class.java)
             intent.putExtra(MAIN_ACTIVITY_NOTE_INTENT_ID, note.id)
+
+            startActivity(intent)
         }
     }
 

@@ -18,11 +18,11 @@ class NoteRepository {
         notes.add(newNote)
     }
 
-    fun updateItem(item: Note?) {
-        if (item != null) {
-            val index = notes.indexOfFirst { it.id == item.id }
+    fun updateNote(note: Note?) {
+        if (note != null) {
+            val index = notes.indexOfFirst { it.id == note.id }
             if (index >= 0) {
-                notes[index] = item
+                notes[index] = note
             }
         }
     }
@@ -34,7 +34,7 @@ class NoteRepository {
     private fun generateListOfItems(): List<Note> {
         val list = mutableListOf<Note>()
 
-        for (number in 1..20) {
+        for (number in 1..9) {
             val item = Note(
                 number,
                 "dummy text01: $number",

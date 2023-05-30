@@ -24,6 +24,7 @@ class CustomAdapter(context: Context) : BaseAdapter(){
     }
 
     fun add(notes: List<Note>) {
+        list.clear()
         list.addAll(notes)
         notifyDataSetChanged()
     }
@@ -50,11 +51,12 @@ class CustomAdapter(context: Context) : BaseAdapter(){
             binding = view.tag as NoteBinding
         }
 
+        binding.note = list[position]
         //something
         return view
     }
 
-    override fun getCount(): Int =list.size
+    override fun getCount() =list.size
 
     override fun getItem(position: Int): Any = list[position]
 

@@ -17,11 +17,12 @@ data class Note(
         private set
 
     @IgnoredOnParcel
-    var name: String
+    var name: String = ""
         get():String {
             return _name
         }
         set(value) {
+            field = value
             this._name = value
         }
 

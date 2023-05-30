@@ -8,11 +8,11 @@ import android.widget.BaseAdapter
 import lt.vgrabauskas.homework08.databinding.NoteBinding
 import lt.vgrabauskas.homework08.repository.Note
 
-class CustomAdapter(context: Context) : BaseAdapter(){
+class CustomAdapter(context: Context) : BaseAdapter() {
     private val inflater = LayoutInflater.from(context)
     private val list = mutableListOf<Note>()
 
-    fun getMaxId() = if (list.isEmpty()){
+    fun getMaxId() = if (list.isEmpty()) {
         -1
     } else {
         list.maxBy { item -> item.id }.id
@@ -32,13 +32,12 @@ class CustomAdapter(context: Context) : BaseAdapter(){
     fun update(note: Note?) {
         if (note != null) {
             val index = list.indexOfFirst { it.id == note.id }
-            if (index >=0) {
+            if (index >= 0) {
                 list[index] = note
                 notifyDataSetChanged()
             }
         }
     }
-
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var view = convertView
@@ -50,13 +49,11 @@ class CustomAdapter(context: Context) : BaseAdapter(){
         } else {
             binding = view.tag as NoteBinding
         }
-
         binding.note = list[position]
-        //something
         return view
     }
 
-    override fun getCount() =list.size
+    override fun getCount() = list.size
 
     override fun getItem(position: Int): Any = list[position]
 

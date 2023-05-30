@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".mainactivity.MainActivity">
+    tools:context=".mainactivity.Notes">
 
     <data>
 
         <variable
             name="mainActivity"
-            type="lt.vgrabauskas.homework08.mainactivity.MainActivity" />
+            type="lt.vgrabauskas.homework08.mainactivity.Notes" />
     </data>
 
     <RelativeLayout
@@ -17,8 +17,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="32dp">
+            android:layout_marginBottom="32dp"
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/searchEditText"

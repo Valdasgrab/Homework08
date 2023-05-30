@@ -46,7 +46,6 @@ class NoteRepository {
             )
             list.add(item)
         }
-
         return list
     }
 

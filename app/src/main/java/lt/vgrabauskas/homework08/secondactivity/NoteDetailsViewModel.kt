@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import lt.vgrabauskas.homework08.repository.Note
 import lt.vgrabauskas.homework08.repository.NoteRepository
 
-class SecondActivityViewModel : ViewModel() {
+class NoteDetailsViewModel : ViewModel() {
 
     private val _noteLiveData = MutableLiveData<Note>()
     val noteLiveData: LiveData<Note>
@@ -30,6 +30,5 @@ class SecondActivityViewModel : ViewModel() {
                 NoteRepository.instance.addNote(note)
             }
         }
-
     }
 }

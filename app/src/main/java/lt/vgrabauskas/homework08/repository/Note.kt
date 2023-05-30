@@ -11,7 +11,7 @@ data class Note(
     private val _id: Int,
     private var _name: String,
     private var _details: String
-): Parcelable {
+) : Parcelable {
     @IgnoredOnParcel
     var id = this._id
         private set

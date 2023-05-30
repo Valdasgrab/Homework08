@@ -31,4 +31,5 @@ class SecondActivityViewModel : ViewModel() {
             }
         }
 
-    }}
+    }
+}

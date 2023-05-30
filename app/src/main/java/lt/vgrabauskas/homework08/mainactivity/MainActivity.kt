@@ -34,6 +34,11 @@ class MainActivity : ActivityLifecycles() {
 
 
         setClickOpenNoteDetails()
+
+        binding.searchButton.setOnClickListener {
+            val query = binding.searchEditText.text.toString()
+            viewModel.searchNotes(query)
+        }
     }
 
     override fun onResume() {
